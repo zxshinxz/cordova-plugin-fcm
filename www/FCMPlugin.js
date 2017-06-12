@@ -25,11 +25,23 @@ FCMPlugin.prototype.onNotification = function( callback, success, error ){
 	FCMPlugin.prototype.onNotificationReceived = callback;
 	exec(success, error, "FCMPlugin", 'registerNotification',[]);
 }
+
+FCMPlugin.prototype.onTokenRefresh = function( callback ){
+  FCMPlugin.prototype.onTokenRefreshReceived = callback;
+}
+
 // DEFAULT NOTIFICATION CALLBACK //
 FCMPlugin.prototype.onNotificationReceived = function(payload){
 	console.log("Received push notification")
 	console.log(payload)
 }
+
+// DEFAULT TOKEN REFRESH CALLBACK //
+FCMPlugin.prototype.onTokenRefreshReceived = function(token){
+  console.log("Received token refresh")
+  console.log(token)
+}
+
 // FIRE READY //
 exec(function(result){ console.log("FCMPlugin Ready OK") }, function(result){ console.log("FCMPlugin Ready ERROR") }, "FCMPlugin",'ready',[]);
 
